@@ -70,14 +70,14 @@ const SpeedQuiz = ({ content, onComplete, onCorrectAnswer }) => {
     const currentQuestion = content[currentIndex];
 
     return (
-        <div className="space-y-6">
+        <div className="space-y-3 md:space-y-6">
             {/* Instrucciones */}
-            <div className="bg-purple-50 border-2 border-purple-200 rounded-2xl p-4">
-                <h3 className="font-bold text-purple-900 mb-2 flex items-center gap-2">
-                    <span className="text-2xl">⚡</span>
+            <div className="bg-purple-50 border-2 border-purple-200 rounded-xl md:rounded-2xl p-2 md:p-4">
+                <h3 className="font-bold text-purple-900 mb-1 md:mb-2 flex items-center gap-2 text-xs md:text-base">
+                    <span className="text-lg md:text-2xl">⚡</span>
                     Cómo jugar - Quiz Rápido
                 </h3>
-                <ul className="text-sm text-purple-800 space-y-1">
+                <ul className="text-[10px] md:text-sm text-purple-800 space-y-0.5 md:space-y-1">
                     <li>• Lee la palabra en inglés</li>
                     <li>• Selecciona la traducción correcta en español</li>
                     <li>• ¡Tienes 15 segundos por pregunta!</li>
@@ -86,10 +86,10 @@ const SpeedQuiz = ({ content, onComplete, onCorrectAnswer }) => {
             </div>
 
             {/* Juego */}
-            <div className="max-w-2xl mx-auto flex flex-col items-center gap-8">
+            <div className="max-w-2xl mx-auto flex flex-col items-center gap-3 md:gap-8">
                 {/* Cronómetro Circular */}
                 <div className="relative flex items-center justify-center">
-                    <svg className="transform -rotate-90" width="120" height="120">
+                    <svg className="transform -rotate-90 w-20 h-20 md:w-[120px] md:h-[120px]" viewBox="0 0 120 120">
                         {/* Círculo de fondo */}
                         <circle
                             cx="60"
@@ -120,19 +120,19 @@ const SpeedQuiz = ({ content, onComplete, onCorrectAnswer }) => {
                     </svg>
                     {/* Tiempo en el centro */}
                     <div className="absolute inset-0 flex flex-col items-center justify-center">
-                        <Clock size={24} className={timeLeft < 5 ? "text-red-500" : "text-indigo-500"} />
-                        <span className={`text-3xl font-bold ${timeLeft < 5 ? "text-red-500" : "text-indigo-600"}`}>
+                        <Clock size={16} className={`md:w-6 md:h-6 ${timeLeft < 5 ? "text-red-500" : "text-indigo-500"}`} />
+                        <span className={`text-xl md:text-3xl font-bold ${timeLeft < 5 ? "text-red-500" : "text-indigo-600"}`}>
                             {timeLeft}
                         </span>
-                        <span className="text-xs text-slate-400">segundos</span>
+                        <span className="text-[10px] md:text-xs text-slate-400">seg</span>
                     </div>
                 </div>
 
-                <div className="text-center space-y-4 mb-4">
-                    <h2 className="text-3xl font-bold text-slate-800">{currentQuestion.question}</h2>
+                <div className="text-center space-y-2 md:space-y-4 mb-2 md:mb-4">
+                    <h2 className="text-lg md:text-3xl font-bold text-slate-800">{currentQuestion.question}</h2>
                 </div>
 
-                <div className="grid grid-cols-1 gap-4 w-full">
+                <div className="grid grid-cols-1 gap-2 md:gap-4 w-full">
                     {currentQuestion.options.map((option, index) => {
                         let stateClass = "bg-white border-slate-200 hover:border-primary-300";
                         if (selectedOption !== null) {
@@ -151,21 +151,21 @@ const SpeedQuiz = ({ content, onComplete, onCorrectAnswer }) => {
                                 onClick={() => handleOptionClick(option, index)}
                                 disabled={!isActive}
                                 className={`
-                    p-6 rounded-2xl border-2 text-xl font-bold transition-all duration-200
+                    p-3 md:p-6 rounded-xl md:rounded-2xl border-2 text-sm md:text-xl font-bold transition-all duration-200
                     ${stateClass}
                   `}
                             >
                                 <div className="flex items-center justify-between">
                                     <span>{option}</span>
-                                    {selectedOption !== null && option === currentQuestion.answer && <CheckCircle />}
-                                    {selectedOption === index && option !== currentQuestion.answer && <XCircle />}
+                                    {selectedOption !== null && option === currentQuestion.answer && <CheckCircle size={16} className="md:w-6 md:h-6" />}
+                                    {selectedOption === index && option !== currentQuestion.answer && <XCircle size={16} className="md:w-6 md:h-6" />}
                                 </div>
                             </button>
                         );
                     })}
                 </div>
 
-                <div className="text-slate-400 text-sm font-medium">
+                <div className="text-slate-400 text-xs md:text-sm font-medium">
                     Pregunta {currentIndex + 1} de {content.length}
                 </div>
             </div>
