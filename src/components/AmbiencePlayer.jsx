@@ -9,9 +9,14 @@ export const AmbiencePlayer = ({ audioSrc, defaultVolume = 0.3 }) => {
 
     useEffect(() => {
         console.log('🎼 AmbiencePlayer montado con audio:', audioSrc);
-    }, [audioSrc]);
+        // Intentar reproducir al montar (puede ser bloqueado por políticas de autoplay)
+        const id = play();
+        if (id !== undefined) {
+            setIsPlaying(true);
+        }
+    }, [audioSrc, play]);
 
-    // Verificar estado real cada segundo
+    // Mantener sincronizado el estado de reproducción con Howler
     useEffect(() => {
         const interval = setInterval(() => {
             const playing = checkIsPlaying();

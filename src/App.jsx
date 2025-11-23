@@ -23,7 +23,7 @@ function App() {
 
         {/* Reproductor de música ambiente */}
         <AmbiencePlayer
-          audioSrc="/sounds/ambiencia-tranquila.mp3"
+          audioSrc="/antigravitymac/sounds/ambiencia-tranquila.mp3"
           defaultVolume={0.2}
         />
       </BrowserRouter>
