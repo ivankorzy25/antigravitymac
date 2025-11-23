@@ -8,6 +8,7 @@ import LessonPage from './pages/LessonPage';
 import { AmbiencePlayer } from './components/AmbiencePlayer';
 
 function App() {
+  // App Version 2.0.1
   return (
     <LanguageProvider>
       <BrowserRouter basename="/antigravitymac">
