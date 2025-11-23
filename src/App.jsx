@@ -10,7 +10,7 @@ import { AmbiencePlayer } from './components/AmbiencePlayer';
 function App() {
   return (
     <LanguageProvider>
-      <BrowserRouter>
+      <BrowserRouter basename="/antigravitymac">
         <Layout>
           <Routes>
             <Route path="/" element={<Home />} />
